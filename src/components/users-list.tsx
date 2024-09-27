@@ -1,6 +1,10 @@
+import { RootState } from '@/store';
+import { useSelector } from 'react-redux';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
 
 export function UsersList() {
+	const users = useSelector((state: RootState) => state.users);
+
 	return (
 		<div className="border border-zinc-700 rounded-lg overflow-hidden">
 			<Table className="text-zinc-400">
@@ -12,11 +16,13 @@ export function UsersList() {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					<TableRow className="border-zinc-700 hover:bg-zinc-800 hover:text-zinc-100">
-						<TableCell>1</TableCell>
-						<TableCell>Victor Badaró</TableCell>
-						<TableCell>victor@email.com</TableCell>
-					</TableRow>
+					{users.map((user) => (
+						<TableRow key={user.id} className="border-zinc-700 hover:bg-zinc-800 hover:text-zinc-100">
+							<TableCell>{user.id}</TableCell>
+							<TableCell>{user.name}</TableCell>
+							<TableCell>{user.email}</TableCell>
+						</TableRow>
+					))}
 				</TableBody>
 			</Table>
 		</div>
