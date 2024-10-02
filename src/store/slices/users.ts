@@ -17,12 +17,12 @@ const usersSlice = createSlice({
 	initialState,
 	reducers: {
 		addUser: (state, action: PayloadAction<UserToBeAdded>) => {
-			const newUser: User = {
+			const userToBeAdded: User = {
 				...action.payload,
 				id: state.length + 1
 			};
 
-			state.push(newUser);
+			state.push(userToBeAdded);
 		}
 	}
 });
